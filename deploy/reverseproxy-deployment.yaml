@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: reverseproxy
+  name: reverseproxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: reverseproxy
+  template:
+    metadata:
+      labels:
+        service: reverseproxy
+    spec:
+      containers:
+      - image: zyadhany/reverseproxy:7
+        name: reverseproxy
+        imagePullPolicy: Always          
+        # resources:
+        #   requests:
+        #     memory: "4024Mi"
+        #     cpu: "250m"
+        #   limits:
+        #     memory: "5024Mi"
+        #     cpu: "500m"       
+        ports:
+        - containerPort: 8080
+      restartPolicy: Always
