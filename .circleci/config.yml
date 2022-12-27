@@ -1,0 +1,45 @@
+version: 2 # Version of CircleCI
+
+          
+jobs:
+  build:
+    context: My_var 
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - setup_remote_docker 
+      - run:
+          name: Install Docker Compose
+          environment:
+            COMPOSE_VERSION: '1.29.2'
+          command: |
+            curl -L "https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/local/bin/docker-compose
+
+      - run:
+          name: Build Docker image
+          command: |
+            docker build -t reverseproxy ./udagram-reverseproxy
+            docker build -t udagram-api-user ./udagram-api-user
+            docker build -t udagram-api-feed ./udagram-api-feed
+            docker build -t udagram-frontend ./udagram-frontend
+      
+      - run:
+          name: taging
+          command: |
+            docker tag reverseproxy mohamedebrahim979777/reverseproxy:v7
+            docker tag udagram-api-user mohamedebrahim979777/udagram-api-user:v7
+            docker tag udagram-api-feed mohamedebrahim979777/udagram-api-feed:v7
+            docker tag udagram-frontend mohamedebrahim979777/udagram-frontend:v7
+
+      
+      - run:
+          name: Push to Docker Hub
+          command: |
+            docker login -u mohamedebrahim979777 -p fixed
+            docker push mohamedebrahim979777/reverseproxy:v7
+            docker push mohamedebrahim979777/udagram-api-user:v7
+            docker push mohamedebrahim979777/udagram-api-feed:v7
+            docker push mohamedebrahim979777/udagram-frontend:v7
