@@ -38,7 +38,7 @@ jobs:
       - run:
           name: Push to Docker Hub
           command: |
-            docker login -u mohamedebrahim979777 -p fixed
+            docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
             docker push mohamedebrahim979777/reverseproxy:v7
             docker push mohamedebrahim979777/udagram-api-user:v7
             docker push mohamedebrahim979777/udagram-api-feed:v7
