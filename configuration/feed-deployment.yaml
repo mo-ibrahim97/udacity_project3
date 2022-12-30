@@ -15,21 +15,22 @@ spec:
         service: backend-feed
     spec:
       containers:
-      - image: zyadhany/udagram-api-feed:7
-        name: backend-feed
+      - name: backend-feed
+        image: mohamedebrahim979777/udagram-api-feed:v7
+       
         imagePullPolicy: Always  
         resources:
           requests:
-            memory: "4024Mi"
+            memory: "512Mi"
             cpu: "250m"
           limits:
-            memory: "5024Mi"
+            memory: "512Mi"
             cpu: "500m"                  
         envFrom:
           - secretRef:
               name: env-secret
           - configMapRef:
-              name: env-config
+              name: env-configmap
         volumeMounts:
         - name: aws-secret
           mountPath: "/root/.aws/"

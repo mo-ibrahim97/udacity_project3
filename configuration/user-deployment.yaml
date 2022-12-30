@@ -15,21 +15,21 @@ spec:
         service: backend-user
     spec:
       containers:
-      - image: zyadhany/udagram-api-user:7
+      - image: mohamedebrahim979777/udagram-api-user:v7
         name: backend-user
         imagePullPolicy: Always  
         resources:
           requests:
-            memory: "4024Mi"
+            memory: "512Mi"
             cpu: "250m"
           limits:
-            memory: "5024Mi"
+            memory: "1024Mi"
             cpu: "500m"                  
         envFrom:
           - secretRef:
               name: env-secret
           - configMapRef:
-              name: env-config
+              name: env-configmap
           - secretRef:
               name: aws-secret
         ports:

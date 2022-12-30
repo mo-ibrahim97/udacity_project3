@@ -17,8 +17,16 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: zyadhany/udagram-frontend:7
+        image: mohamedebrahim979777/udagram-frontend:v7
         imagePullPolicy: Always
+        resources:
+           requests:
+              memory: "512Mi"
+              cpu: "250m"
+           limits:
+             memory: "1024Mi"
+             cpu: "500m"       
+        
         ports:
         - containerPort: 80
       restartPolicy: Always
