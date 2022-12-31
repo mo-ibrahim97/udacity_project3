@@ -5,7 +5,7 @@ metadata:
     service: backend-user
   name: backend-user
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       service: backend-user
@@ -20,16 +20,16 @@ spec:
         imagePullPolicy: Always  
         resources:
           requests:
-            memory: "64Mi"
-            cpu: "75m"
+            memory: "1024Mi"
+            cpu: "250m"
           limits:
-            memory: "128Mi"
-            cpu: "88m"                  
+            memory: "1024Mi"
+            cpu: "500m"                  
         envFrom:
           - secretRef:
               name: env-secret
           - configMapRef:
-              name: env-configmap
+              name: env-config
           - secretRef:
               name: aws-secret
         ports:

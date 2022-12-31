@@ -5,7 +5,7 @@ metadata:
     service: reverseproxy
   name: reverseproxy
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       service: reverseproxy
@@ -17,14 +17,21 @@ spec:
       containers:
       - image: mohamedebrahim979777/reverseproxy:v7 
         name: reverseproxy
-        imagePullPolicy: Always          
+        imagePullPolicy: Always  
         resources:
           requests:
-            memory: "512Mi"
-            cpu: "500"
+            memory: "64Mi"
+            cpu: "75m"
           limits:
-           
-            cpu: "600"       
+            memory: "128Mi"
+            cpu: "88m"                  
+        envFrom:
+          - secretRef:
+              name: env-secret
+          - configMapRef:
+              name: env-configmap
+          - secretRef:
+              name: aws-secret
         ports:
-        - containerPort: 8080
+          - containerPort: 8080
       restartPolicy: Always
