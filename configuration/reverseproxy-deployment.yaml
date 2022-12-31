@@ -15,24 +15,16 @@ spec:
         service: reverseproxy
     spec:
       containers:
-      - image: mohamedebrahim979777/reverseproxy:v7
+      - image: mohamedebrahim979777/reverseproxy:v7 
         name: reverseproxy
         imagePullPolicy: Always          
         resources:
-           requests:
-              memory: "512Mi"
-              cpu: "250m"
-           limits:
-             memory: "1024Mi"
-             cpu: "500m"       
-        
-        envFrom:
-          - secretRef:
-              name: env-secret
-          - configMapRef:
-              name: env-configmap
-          - secretRef:
-              name: aws-secret
+          requests:
+            memory: "512Mi"
+            cpu: "500"
+          limits:
+           
+            cpu: "600"       
         ports:
         - containerPort: 8080
-      restartPolicy: Always  
+      restartPolicy: Always

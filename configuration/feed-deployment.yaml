@@ -5,7 +5,7 @@ metadata:
     service: backend-feed
   name: backend-feed
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       service: backend-feed
@@ -21,11 +21,11 @@ spec:
         imagePullPolicy: Always  
         resources:
           requests:
-            memory: "512Mi"
-            cpu: "250m"
+            memory: "64Mi"
+            cpu: "75m"
           limits:
-            memory: "512Mi"
-            cpu: "500m"                  
+            memory: "128Mi"
+            cpu: "88m"                  
         envFrom:
           - secretRef:
               name: env-secret
@@ -33,7 +33,7 @@ spec:
               name: env-configmap
         volumeMounts:
         - name: aws-secret
-          mountPath: "/root/.aws/"
+          mountPath: "$HOME/.aws/:root/.aws"
           readOnly: true        
       restartPolicy: Always
       volumes:
