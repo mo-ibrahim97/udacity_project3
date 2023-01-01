@@ -3,13 +3,13 @@ kind: ConfigMap
 metadata:
   name: env-configmap
 data:
-  POSTGRES_USERNAME: root97
-  POSTGRES_PASSWORD: fixedfixed
+  POSTGRES_USERNAME : root97
+  POSTGRES_PASSWORD : fixedfixed
   POSTGRES_DB: postgres
-  POSTGRES_HOST: mydatabase.cmm7dzkv10km.us-east-1.rds.amazonaws.com
+  POSTGRES_HOST: mydatabase.cd807fqdah7g.us-east-1.rds.amazonaws.com
   AWS_REGION: us-east-1
-  AWS_PROFILE: default
   JWT_SECRET: testing
-  AWS_BUCKET: test-642862753081-dev
-  URL: http://a541947ba114147a5834b56cad8f4b05-351214031.us-east-1.elb.amazonaws.com
+  AWS_PROFILE: default
+  AWS_BUCKET: my-269252624284-bucket
+  URL:  http://ab99d1689a5c94c1d875c261b93c3e6f-299427007.us-east-1.elb.amazonaws.com
   

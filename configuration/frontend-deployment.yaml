@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: mohamedebrahim979777/udagram-frontend:v6
+        image: mohamedebrahim979777/udagram-frontend:v8
         imagePullPolicy: Always
         resources:
            requests:
